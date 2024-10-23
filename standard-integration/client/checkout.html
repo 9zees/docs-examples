@@ -1,15 +1,83 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PayPal JS SDK Standard Integration</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Subscription Test</title>
   </head>
   <body>
-    <div id="paypal-button-container"></div>
+    <div style="display: flex">
+      <div>
+        <div
+          style="
+            border: 1px solid grey;
+            padding: 24px;
+            margin: 0 12px 24px 0;
+            border-radius: 12px;
+            font-size: 24px;
+          "
+        >
+          <div>
+            "Subscribe Now" vs. "Continue" Test
+
+            <div style="font-size: 18px; margin: 24px 0">
+              Select payload from Merchant to SMS:
+            </div>
+          </div>
+          <input
+            type="radio"
+            id="brandedContinue"
+            name="testType"
+            value="CONTINUE"
+            onclick="displaySelectedValue()"
+            onkeypress="displaySelectedValue()"
+          />
+          <label for="brandedContinue"
+            >Branded: Continue
+            <div style="font-size: 18px; color: green">
+              The "Agree & Continue" button from user_action='CONTINUE' seems to
+              only be shown the 1st time after a user logs in. When we toggle to
+              option user_action='SUBSCRIBE_NOW', the button will not revert
+              back to "Agree & Continue" even if we are passing in the right
+              payload. The user needs to log out and log back in - if we want to
+              see "Agree & Continue" again.
+            </div></label
+          >
+          <br />
+          <input
+            type="radio"
+            id="brandedSubscribeNow"
+            name="testType"
+            value="SUBSCRIBE_NOW"
+            onclick="displaySelectedValue()"
+            onkeypress="displaySelectedValue()"
+          />
+          <label for="brandedSubscribeNow">Branded: Subscribe Now</label><br />
+        </div>
+        <div id="paypal-button-container"></div>
+      </div>
+      <div>
+        <a style="display:block; text-align:center;padding-bottom:6px;"
+          href="https://developer.paypal.com/docs/api/subscriptions/v1/#subscriptions_create" target="_blank" and rel="noopener noreferrer"
+          >Most payload content below is taken from Create Subscriptions API</a
+        >
+        <pre
+          id="json-payload-display"
+          style="
+            visibility: hidden;
+            margin-left: 48px;
+            margin-top: 0;
+            font-size: 16px;
+            padding: 24px;
+            background-color: #dcdcdc;
+            border-radius: 12px;
+          "
+        ></pre>
+      </div>
+    </div>
     <p id="result-message"></p>
     <!-- Replace the "test" client-id value with your client-id -->
-    <script src="https://www.paypal.com/sdk/js?client-id=test&currency=USD"></script>
+    <script src="https://www.paypal.com/sdk/js?client-id=AVhcAP8TDu5PFeAw97M8187g-iYQW8W0AhvvXaMaWPojJRGGkunX8r-fyPkKGCv09P83KC2dijKLKwyz&vault=true&intent=subscription&cachebust=calzone"></script>
     <script src="app.js"></script>
   </body>
 </html>

@@ -9,7 +9,7 @@ const COMPLETE_REQUEST_OBJECT = {
     brand_name: "walmart",
     locale: "en-US",
     shipping_preference: "SET_PROVIDED_ADDRESS",
-    user_action: "CONTINUE",
+    user_action: "SUBSCRIBE_NOW",
     payment_method: {
       payer_selected: "PAYPAL",
       payee_preferred: "IMMEDIATE_PAYMENT_REQUIRED",
@@ -42,30 +42,8 @@ const COMPLETE_REQUEST_OBJECT = {
         country_code: "US",
       },
     },
-    /* // FOR UNBRANDED:
-    payment_source: {
-      card: {
-        number: "4111111111111111",
-        expiry: "2020-02",
-        security_code: "121",
-        name: "John Doe",
-        billing_address: {
-          address_line_1: "2211 N First Street",
-          address_line_2: "17.3.160",
-          admin_area_1: "CA",
-          admin_area_2: "San Jose",
-          postal_code: "95131",
-          country_code: "US",
-        },
-      },
-    },*/
   },
 };
-
-var selectedPayloadGlobalVar = null;
-radiobtnInit = document.getElementById("brandedContinue");
-radiobtnInit.checked = true;
-displaySelectedValue();
 
 window.paypal
   .Buttons({
@@ -98,12 +76,15 @@ window.paypal
       try {
         console.log("data received for onApprove: ", data);
 
-        const response = await fetch(`/api/subscriptions/${data.subscriptionID}`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        });
+        const response = await fetch(
+          `/api/subscriptions/${data.subscriptionID}`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
 
         const jsonResponse = await response.json();
         console.log(
@@ -127,30 +108,10 @@ function resultMessage(message) {
   container.innerHTML = message;
 }
 
-function displaySelectedValue() {
-  const selectedTest = getSelectedRadioBtnValue("testType");
-
-  // Update the value in application_context
-  COMPLETE_REQUEST_OBJECT.application_context.user_action = selectedTest;
-
-  const valueToDisplay = JSON.stringify(COMPLETE_REQUEST_OBJECT, null, 2);
-
-  const container = document.querySelector("#json-payload-display");
-  container.innerHTML = valueToDisplay;
-  container.style.visibility = "visible";
-}
-
-function getSelectedRadioBtnValue(radioGroupName) {
-  const radioButtons = document.querySelectorAll(
-    `input[name="${radioGroupName}"]:checked`
-  );
-
-  if (radioButtons.length > 0) {
-    selectedPayloadGlobalVar = radioButtons[0].value;
-    return radioButtons[0].value;
-  } else {
-    return null; // No radio button selected
-  }
+function fetchVaultedWallet() {
+  const customerId = document.getElementById("customerId").value;
+  console.log("fetch vaulted wallet for customerId: ", customerId);
+  window.location.href = `/vaultedSubscription?customerID=${customerId}`;
 }
 
 function getStartTime() {

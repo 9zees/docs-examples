@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>One-Time Checkout Vault Test</title>
+  </head>
+  <body>
+    <div
+      style="
+        border: 1px solid grey;
+        padding: 24px;
+        margin: 0 12px 24px 0;
+        border-radius: 12px;
+      "
+    >
+      <div style="font-size: 24px; margin-bottom: 24px">
+        One-Time Checkout Vaulted Wallet Test
+      </div>
+      <div>
+        <label for="customerId">Enter customer ID:</label>
+        <input type="text" id="customerId" name="customerId" size="20" value="<%=customerIdQueryParam%>"/>
+        <button onclick="fetchVaultedWallet()">Refresh vaulted button</button>
+      </div>
+    </div>
+    <div id="paypal-button-container"></div>
+    <p id="result-message"></p>
+    <script
+      src="https://www.paypal.com/sdk/js?client-id=<%= clientId %>&intent=capture&cachebust=calzone"
+      data-user-id-token="<%= userIdToken %>"
+    ></script>
+    <script src="oneTimeCheckoutVaultedWalletApp.js"></script>
+  </body>
+</html>
