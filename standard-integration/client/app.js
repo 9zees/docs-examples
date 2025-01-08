@@ -1,5 +1,5 @@
-// const PLAN_ID = "P-5TA4440421944643LM4IEWFI"; // msmaster
-const PLAN_ID = "P-18N054251K828063VM4MCFZQ"; // sandbox
+const PLAN_ID = "P-5TA4440421944643LM4IEWFI"; // msmaster
+// const PLAN_ID = "P-18N054251K828063VM4MCFZQ"; // sandbox
 
 const startTime = getStartTime();
 

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>CardFields Test</title>
+    <style>
+      body > p,
+      ul > li {
+        font-family: monospace;
+        font-size: 20px;
+      }
+
+      .mastercard-list li {
+        margin-bottom: 8px;
+      }
+
+      #result-message {
+        text-align: center;
+        padding-top: 12px;
+      }
+    </style>
+  </head>
+  <body>
+    <p>Test Cards: MasterCard</p>
+    <ul class="mastercard-list">
+      <li>5301896424684575</li>
+      <li>5301896469316893</li>
+      <li>5301896469776575</li>
+      <li>5301896494977248</li>
+      <li>5570215453076559</li>
+      <li>5426323025348229</li>
+    </ul>
+    <p id="result-message"></p>
+
+    <div id="checkout-form">
+      <div id="card-name-field-container"></div>
+      <div id="card-number-field-container"></div>
+      <div id="card-expiry-field-container"></div>
+      <div id="card-cvv-field-container"></div>
+      <button id="card-fields-submit-btn" type="button">
+        Pay now with Card Fields
+      </button>
+    </div>
+  </body>
+  <!-- Replace the "test" client-id value with your client-id -->
+  <script src="https://localhost.paypal.com:8443/sdk/js?client-id=alc_client1&components=card-fields&cachebust=calzone" data-sdk-client-token="maria-token"></script>
+  <script src="cardFieldsApp.js"></script>
+</html>
