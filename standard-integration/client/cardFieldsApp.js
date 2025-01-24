@@ -93,9 +93,7 @@ const cardField = paypal.CardFields({
           "Content-Type": "application/json",
         },
         // use the "body" param to optionally pass additional order information
-        body: JSON.stringify({
-          plan_id: "P-5TA4440421944643LM4IEWFI", //msmaster,
-        }),
+        body: JSON.stringify(CARD_FIELDS_REQUEST_OBJ),
       });
 
       const jsonResponse = await response.json();
